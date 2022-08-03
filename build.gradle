@@ -1,0 +1,39 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.2'
+	id 'io.spring.dependency-management' version '1.0.12.RELEASE'
+	id 'java'
+	id 'war'
+}
+
+group = 'com.store'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+//	runtimeOnly 'mysql:mysql-connector-java:8.0.29' // se agrego el jar como librería
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// swagger (http://localhost:8080/swagger-ui/index.html)
+	implementation 'io.springfox:springfox-swagger2:3.0.0'
+	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+	implementation 'org.springdoc:springdoc-openapi-ui:1.6.9'
+
+	// conector a la base de datos
+	implementation group: 'mysql', name: 'mysql-connector-java', version: '5.1.8'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+// Run de colores
+bootRun {
+	jvmArgs = ["-Dspring.output.ansi.enabled=ALWAYS"]
+}
